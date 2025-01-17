@@ -10,7 +10,7 @@ def index():
 @main.route('/recommend', methods=['POST'])
 def recommend():
     features = [float(x) for x in request.form.getlist('features')]
-    model = TeaRecommendationModel('data/teas.xlsx')
+    model = TeaRecommendationModel('data/teas_test.csv')
     model.train()
     recommendations = model.recommend(features)
     return render_template('index.html', recommendations=recommendations)

@@ -4,7 +4,7 @@ from sklearn.preprocessing import StandardScaler
 
 class TeaRecommendationModel:
     def __init__(self, data_path):
-        self.data = pd.read_excel(data_path)
+        self.data = pd.read_csv(data_path)
         self.model = NearestNeighbors()
         self.scaler = StandardScaler()
 
@@ -25,7 +25,7 @@ class TeaRecommendationModel:
         return self.data.iloc[indices[0]]
 
 # Example usage:
-# model = TeaRecommendationModel('data/teas.xlsx')
+# model = TeaRecommendationModel('data/teas_test.csv')
 # model.train()
 # recommendations = model.recommend([0, 100, 10])  # Example features
 # print(recommendations)
