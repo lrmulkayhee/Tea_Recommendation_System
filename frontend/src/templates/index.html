@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tea Recommendation System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Tea Recommendation System</h1>
+        
+        <div class="mb-4">
+            <h3>Total Number of Teas: <span id="total-teas">0</span></h3>
+        </div>
+        
+        <div class="form-group">
+            <label for="filter-plant">Filter by Plant:</label>
+            <select id="filter-plant" class="form-control" onchange="filterTeas()">
+                <option value="">Select Plant</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="filter-type">Filter by Type:</label>
+            <select id="filter-type" class="form-control" onchange="filterTeas()">
+                <option value="">Select Type</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="filter-region">Filter by Region:</label>
+            <select id="filter-region" class="form-control" onchange="filterTeas()">
+                <option value="">Select Region</option>
+            </select>
+        </div>
+        
+        <div id="recommendations" class="mt-4"></div>
+        <canvas id="teaChart" class="mt-4"></canvas>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
