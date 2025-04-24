@@ -1,12 +1,14 @@
 from flask import Blueprint, jsonify, request
 import pandas as pd
 from services.recommendation_service import RecommendationService
+from services.chatbot_service import ChatbotService
 
 main = Blueprint('main', __name__)
 
 # Load tea data
 tea_data = pd.read_csv('src/static/teas_test.csv')
 recommendation_service = RecommendationService(tea_data)
+chatbot_service = ChatbotService()
 
 @main.route('/teas', methods=['GET'])
 def get_teas():
@@ -40,6 +42,12 @@ def delete_tea(name):
     tea_data = tea_data[tea_data['name'] != name]
     tea_data.to_csv('src/static/teas_test.csv', index=False)
     return '', 204
+
+@main.route('/chat', methods=['POST'])
+def chat_with_bot():
+    user_message = request.json.get('message', '')
+    response = chatbot_service.get_response(user_message)
+    return jsonify({'response': response})
 
 def register_routes(app):
     app.register_blueprint(main)
